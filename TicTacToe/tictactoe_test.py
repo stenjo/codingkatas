@@ -51,6 +51,42 @@ class TestTicTacToeShould(unittest.TestCase):
 
         self.assertEqual(winner, "O", "Should have O as winner")
         
+    def test_WinnerO456(self):
+        
+        self.game.Play(1)
+        self.game.Play(4)
+        self.game.Play(2)
+        self.game.Play(5)
+        self.game.Play(9)
+        self.game.Play(6)
+        winner = self.game.GetWinner()
+
+        self.assertEqual(winner, "O", "Should have O as winner")
+        
+    def test_WinnerO789(self):
+        
+        self.game.Play(5)
+        self.game.Play(7)
+        self.game.Play(6)
+        self.game.Play(8)
+        self.game.Play(3)
+        self.game.Play(9)
+        winner = self.game.GetWinner()
+
+        self.assertEqual(winner, "O", "Should have O as winner")
+        
+    def test_WinnerX789(self):
+        
+        self.game.Play(7)
+        self.game.Play(6)
+        self.game.Play(8)
+        self.game.Play(3)
+        self.game.Play(9)
+        self.game.Play(5)
+        winner = self.game.GetWinner()
+
+        self.assertEqual(winner, "X", "Should have X as winner")
+        
     def test_WinnerX123(self):
         
         self.game.Play(1)
@@ -63,11 +99,36 @@ class TestTicTacToeShould(unittest.TestCase):
         self.assertEqual(winner, "X", "Should have X as winner")
         
     def test_NoWinnerWhenNoPlays(self):
-        
 
         winner = self.game.GetWinner()
 
         self.assertEqual(winner, None, "Should have no winner")
+        
+    def test_WinnerX741(self):
+        
+        self.game.Play(7)
+        self.game.Play(6)
+        self.game.Play(4)
+        self.game.Play(9)
+        self.game.Play(1)
+        winner = self.game.GetWinner()
+
+        self.assertEqual(winner, "X", "Should have X as winner")
+        
+    def test_NoWinnerWhenFullBoard(self):
+        self.game.Play(1)
+        self.game.Play(2)
+        self.game.Play(3)
+        self.game.Play(4)
+        self.game.Play(5)
+        self.game.Play(7)
+        self.game.Play(8)
+        self.game.Play(9)
+        self.game.Play(6)
+ 
+        winner = self.game.GetWinner()
+
+        self.assertEqual(winner, "Tie", "Should have no winner")
         
         
         
