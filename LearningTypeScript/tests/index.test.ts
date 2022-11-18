@@ -12,6 +12,6 @@ describe('testing index file', () => {
   })
 
   test('negative number should result in error message', () => {
-    expect(add('1,-1')).toThrow(new RangeError())
+    expect(() => {add('1,-1'); }).toThrow(RangeError);
   })
 });
