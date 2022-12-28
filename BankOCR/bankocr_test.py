@@ -16,7 +16,7 @@ class TestOCR(unittest.TestCase):
             '|_|'
         ]
         
-        num = ocr.Scan(image)
+        num = ocr.ScanDigit(image)
         
         self.assertEqual(num, 0, "Should be 0")
         
@@ -28,7 +28,7 @@ class TestOCR(unittest.TestCase):
             '  |'
         ]
         
-        num = ocr.Scan(image)
+        num = ocr.ScanDigit(image)
         
         self.assertEqual(num, 1, "Should be 1")
         
@@ -40,7 +40,7 @@ class TestOCR(unittest.TestCase):
             '|_ '
         ]
         
-        num = ocr.Scan(image)
+        num = ocr.ScanDigit(image)
         
         self.assertEqual(num, 2, "Should be 2")
         
@@ -52,7 +52,7 @@ class TestOCR(unittest.TestCase):
             ' _|'
         ]
         
-        num = ocr.Scan(image)
+        num = ocr.ScanDigit(image)
         
         self.assertEqual(num, 3, "Should be 3")
     
@@ -64,7 +64,33 @@ class TestOCR(unittest.TestCase):
             '  |'
         ]
         
-        num = ocr.Scan(image)
+        num = ocr.ScanDigit(image)
         
         self.assertEqual(num, 4, "Should be 4")
             
+    def test_decode_scan_of_9(self):
+        ocr = Ocr()
+        image = [
+            ' _ ', 
+            '|_|',
+            ' _|'
+        ]
+        
+        num = ocr.ScanDigit(image)
+        
+        self.assertEqual(num, 9, "Should be 9")
+        
+    def test_decode_scan_of_line_123456789(self):
+        ocr = Ocr()
+        image = [
+            '    _  _     _  _  _  _  _ ',
+            '  | _| _||_||_ |_   ||_||_|',
+            '  ||_  _|  | _||_|  ||_| _|'
+        ]
+        
+        num = ocr.ScanLine(image)
+        
+        self.assertEqual(num, 123456789, "Should be 123456789")
+        
+        
+    
