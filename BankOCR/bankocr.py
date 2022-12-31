@@ -11,16 +11,45 @@ class Ocr:
         
     def ScanDigit(self, lines):
         numbers = [
-            ' _ | ||_|', # 0
-            '     |  |', # 1
-            ' _  _||_ ', # 2
-            ' _  _| _|', # 3
-            '   |_|  |', # 4
-            ' _ |_  _|', # 5
-            ' _ |_ |_|', # 6
-            ' _   |  |', # 7
-            ' _ |_||_|', # 8
-            ' _ |_| _|'  # 9
+            ' _ '+
+            '| |'+
+            '|_|', # 0
+            
+            '   '+
+            '  |'+
+            '  |', # 1
+            
+            ' _ '+
+            ' _|'+
+            '|_ ', # 2
+            
+            ' _ '+
+            ' _|'+
+            ' _|', # 3
+            
+            '   '+
+            '|_|'+
+            '  |', # 4
+            
+            ' _ '+
+            '|_ '+
+            ' _|', # 5
+            
+            ' _ '+
+            '|_ '+
+            '|_|', # 6
+            
+            ' _ '+
+            '  |'+
+            '  |', # 7
+            
+            ' _ '+
+            '|_|'+
+            '|_|', # 8
+            
+            ' _ '+
+            '|_|'+
+            ' _|'  # 9
         ]
         
         return  numbers.index("".join(lines))
@@ -37,3 +66,13 @@ class Ocr:
             number += self.ScanDigit(digit)
 
         return number
+    
+    def Checksum(self, number):
+        sum = 0
+        for i in range(0, len(str(number))):
+            sum += int(str(number)[i])*(len(str(number)) - i)
+            
+        return sum % 11
+    
+    def IsValid(self, number):
+        return self.Checksum(number) == 0
